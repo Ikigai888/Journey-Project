@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journey — Concept Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-tokens.css">
+<style>
+/*
+  This screen is synced to /design-tokens.css (same source of truth as
+  journey-landing.html). Only prototype-local aliases live here — the
+  actual color/type values are defined once, in the shared file.
+*/
+:root{
+  --ink-2:   var(--ink-1);
+  --paper-2: var(--paper-1);
+  --dim:     var(--text-dim);
+  --dimmer:  var(--text-dimmer);
+  --serif:   var(--font-serif);
+  --mono:    var(--font-mono);
+  --sans:    var(--font-sans);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--paper-2);color:var(--text);line-height:1.55;padding:28px 16px 80px}
+
+/* prototype chrome */
+.proto-head{max-width:1180px;margin:0 auto 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between}
+.proto-title{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7a7f88}
+.proto-note{font-size:13px;color:#7a7f88;max-width:560px}
+.tabs{max-width:1180px;margin:0 auto 20px;display:flex;flex-wrap:wrap;gap:8px}
+.tab{font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:9px 14px;border:1px solid #d3cfc6;background:#f2efe9;color:#5f646d;border-radius:5px;cursor:pointer;transition:.15s}
+.tab:hover{border-color:var(--accent);color:var(--text)}
+.tab.active{background:var(--ink);border-color:var(--ink);color:#f2efe9}
+
+/* device frame */
+.frame{max-width:1180px;margin:0 auto;background:var(--paper);border-radius:14px;box-shadow:0 20px 60px rgba(20,24,32,.16);overflow:hidden;border:1px solid #dbd7ce}
+.screen{display:none}
+.screen.active{display:block}
+
+/* app shell */
+.app{display:grid;grid-template-columns:236px 1fr}
+@media(max-width:820px){.app{grid-template-columns:1fr}.side{display:none}}
+.side{background:var(--ink);color:#cfd3da;padding:26px 20px;min-height:640px}
+.brand{font-family:var(--serif);font-size:22px;color:#f2efe9;margin-bottom:4px}
+.brand-sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:32px}
+.nav-item{font-size:14px;padding:9px 10px;border-radius:5px;color:#9aa0aa;margin-bottom:2px;cursor:pointer}
+.nav-item.on{background:rgba(255,255,255,.07);color:#f2efe9}
+.side-foot{margin-top:34px;padding-top:20px;border-top:1px solid rgba(255,255,255,.09);font-size:12.5px;color:#7d838d;line-height:1.5}
+.side-foot strong{color:#cfd3da;font-weight:500}
+
+.main{padding:34px 38px 46px;min-height:640px}
+@media(max-width:520px){.main{padding:26px 20px 36px}}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+h1{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1.2;margin-bottom:8px}
+h2{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:12px}
+.sub{color:var(--dim);font-size:15px;margin-bottom:26px}
+
+/* wayline */
+.wayline{margin:28px 0 34px}
+.wl-track{position:relative;height:4px;background:linear-gradient(90deg,#d8d3c8,var(--accent));border-radius:3px}
+.wl-dot{position:absolute;top:-7px;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
+.wl-marks{display:flex;justify-content:space-between;margin-top:16px}
+.wl-mark{flex:1;text-align:left}
+.wl-mark span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer)}
+.wl-mark.on span{color:var(--accent)}
+.wl-mark small{display:block;font-family:var(--sans);font-size:12px;color:var(--dimmer);margin-top:3px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:9px;padding:22px}
+.card h3{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--dim);text-transform:uppercase;margin-bottom:12px}
+.card p{font-size:14.5px;color:#3a3f4a;margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.task{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #f0ede7;font-size:14.5px}
+.task:last-child{border-bottom:none}
+.box{flex:0 0 17px;width:17px;height:17px;border:1.5px solid #cfcabf;border-radius:4px;margin-top:2px}
+.task.done .box{background:var(--ok);border-color:var(--ok);position:relative}
+.task.done .box:after{content:"";position:absolute;left:5px;top:1.5px;width:4px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.task.done span{color:var(--dimmer);text-decoration:line-through}
+.pill{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:20px;background:var(--accent-soft);color:#8a6317}
+
+/* continuity — the differentiator */
+.thread{background:#fff;border:1px solid var(--line);border-radius:9px;padding:24px}
+.entry{display:grid;grid-template-columns:80px 1fr;gap:18px;padding:15px 0;border-bottom:1px solid #f2efe9}
+.entry:last-child{border-bottom:none}
+.entry-date{font-family:var(--mono);font-size:11.5px;color:var(--dimmer);padding-top:2px}
+.entry-body{font-size:14.5px;color:#3a3f4a}
+.entry-body b{font-weight:600;color:var(--text)}
+.noticed{background:var(--accent-soft);border-left:3px solid var(--accent);padding:14px 16px;border-radius:0 6px 6px 0;margin:6px 0 2px;font-size:14.5px}
+.mood{display:flex;gap:5px;align-items:flex-end;height:44px;margin-top:6px}
+.mood i{flex:1;background:linear-gradient(180deg,var(--accent),#e3d3ae);border-radius:2px;opacity:.85}
+
+/* exercise */
+.ex-q{font-family:var(--serif);font-size:20px;line-height:1.4;margin-bottom:16px}
+.ex-field{width:100%;min-height:120px;border:1px solid var(--line);border-radius:7px;padding:14px;font-family:var(--sans);font-size:14.5px;line-height:1.6;color:#3a3f4a;background:#fff;resize:vertical}
+.ex-field:focus{outline:none;border-color:var(--accent)}
+.hint{font-size:13px;color:var(--dimmer);margin-top:9px;font-style:italic}
+.btn{display:inline-block;margin-top:16px;font-size:14.5px;font-weight:600;background:var(--ink);color:#f2efe9;border:none;border-radius:6px;padding:12px 22px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--dim);border:1px solid #d3cfc6}
+
+/* check-in */
+.scale{display:flex;gap:9px;margin:14px 0 4px}
+.scale button{flex:1;padding:16px 0;border:1px solid var(--line);background:#fff;border-radius:7px;font-family:var(--mono);font-size:15px;color:var(--dim);cursor:pointer;transition:.15s}
+.scale button:hover{border-color:var(--accent);color:var(--text)}
+.scale button.sel{background:var(--ink);color:#f2efe9;border-color:var(--ink)}
+
+.callout{background:var(--ink-2);color:#cfd3da;border-radius:9px;padding:22px;font-size:14.5px}
+.callout b{color:#f2efe9}
+</style>
+</head>
+<body>
+
+<div class="proto-head">
+  <div class="proto-title">Journey — concept prototype</div>
+  <div class="proto-note">Not a product. A reaction artifact for interviews — show it, then stop talking and watch. Concierge-delivered; no AI, no bot.</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-s="home">1 · Where am I</button>
+  <button class="tab" data-s="week">2 · This week</button>
+  <button class="tab" data-s="exercise">3 · Identity work</button>
+  <button class="tab" data-s="thread">4 · The thread ★</button>
+  <button class="tab" data-s="checkin">5 · Check-in</button>
+  <button class="tab" data-s="support">6 · Support</button>
+</div>
+
+<div class="frame">
+
+<!-- 1. WHERE AM I -->
+<div class="screen active" id="home">
+  <div class="app">
+    <div class="side">
+      <div class="brand">Journey</div>
+      <div class="brand-sub">Day 34 of 90</div>
+      <div class="nav-item on">Where am I</div>
+      <div class="nav-item">This week</div>
+      <div class="nav-item">Identity work</div>
+      <div class="nav-item">The thread</div>
+      <div class="nav-item">Check in</div>
+      <div class="nav-item">Support</div>
+      <div class="side-foot"><strong>Tad</strong> — your guide<br><em style="font-style:normal;color:#6a707a">Not a therapist. Been through this.</em><br><span style="display:block;margin-top:8px">Next 1:1: Thu 10:00 · biweekly</span></div>
+    </div>
+    <div class="main">
+      <div class="kicker">Reorient · Week 5</div>
+      <h1>You're further along than it feels.</h1>
+      <p class="sub">Five weeks ago you couldn't plan a Tuesday. This week you're rewriting the story.</p>
+
+      <div class="wayline">
+        <div class="wl-track"><span class="wl-dot" style="left:37%"></span></div>
+        <div class="wl-marks">
+          <div class="wl-mark"><span>Reground</span><small>Weeks 1–3 · done</small></div>
+          <div class="wl-mark on"><span>Reorient</span><small>Weeks 4–8 · you are here</small></div>
+          <div class="wl-mark"><span>Rebuild</span><small>Weeks 9–13</small></div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>What's changed</h3>
+          <p><b>Routine:</b> restored — week 3</p>
+          <p><b>Told someone honestly:</b> yes — week 2</p>
+          <p><b>Direction:</b> in progress</p>
+          <p><b>Applications:</b> not yet — by design</p>
+        </div>
+        <div class="card">
+          <h3>How you've been</h3>
+          <p style="font-size:13px;color:#9aa0aa">Daily check-ins, last 3 weeks</p>
+          <div class="mood">
+            <i style="height:30%"></i><i style="height:24%"></i><i style="height:38%"></i><i style="height:34%"></i>
+            <i style="height:46%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:58%"></i>
+            <i style="height:62%"></i><i style="height:50%"></i><i style="height:70%"></i><i style="height:66%"></i>
+            <i style="height:74%"></i><i style="height:82%"></i>
+          </div>
+          <p style="margin-top:12px;font-size:13.5px">Trending up since week 3. The dip on day 19 was the Meta rejection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. THIS WEEK -->
+<div class="screen" id="week">
+  <div class="app">
+    <div class="side">
+      <div class="brand">Journey</div>
+      <div class="brand-sub">Day 34 of 90</div>
+      <div class="nav-item">Where am I</div>
+      <div class="nav-item on">This week</div>
+      <div class="nav-item">Identity work</div>
+      <div class="nav-item">The thread</div>
+      <div class="nav-item">Check in</div>
+      <div class="nav-item">Support</div>
+      <div class="side-foot"><strong>Tad</strong> — your guide<br><em style="font-style:normal;color:#6a707a">Not a therapist. Been through this.</em><br><span style="display:block;margin-top:8px">Next 1:1: Thu 10:00 · biweekly</span></div>
+    </div>
+    <div class="main">
+      <div class="kicker">Week 5 · Reorient</div>
+      <h1>Rewrite the story.</h1>
+      <p class="sub">The version of what happened that's true, shame-free, and you can say out loud without your chest tightening.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>This week</h3>
+          <div class="task done"><span class="box"></span><span>Monday check-in</span></div>
+          <div class="task done"><span class="box"></span><span>Read: why the story you tell matters</span></div>
+          <div class="task"><span class="box"></span><span>Write the first draft of your story</span></div>
+          <div class="task"><span class="box"></span><span>Say it out loud once, to anyone</span></div>
+          <div class="task"><span class="box"></span><span>Thursday call with Tad</span></div>
+        </div>
+        <div class="card">
+          <h3>Not this week</h3>
+          <p>No applications. No LinkedIn rewrite. No "what's next" conversations with people who'll ask about salary.</p>
+          <p style="color:var(--dimmer)">You'll get there in week 9. Doing it now, before the story lands, is how people end up describing a job they don't want.</p>
+          <span class="pill">Phase-aware pacing</span>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:18px">
+        <b>Why this order?</b> Identity work before search work isn't a nicety. The story you tell about the layoff becomes the story you tell in interviews. Get it honest first, and the search gets easier.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. IDENTITY WORK -->
+<div class="screen" id="exercise">
+  <div class="app">
+    <div class="side">
+      <div class="brand">Journey</div>
+      <div class="brand-sub">Day 34 of 90</div>
+      <div class="nav-item">Where am I</div>
+      <div class="nav-item">This week</div>
+      <div class="nav-item on">Identity work</div>
+      <div class="nav-item">The thread</div>
+      <div class="nav-item">Check in</div>
+      <div class="nav-item">Support</div>
+      <div class="side-foot"><strong>Tad</strong> — your guide<br><em style="font-style:normal;color:#6a707a">Not a therapist. Been through this.</em><br><span style="display:block;margin-top:8px">Next 1:1: Thu 10:00 · biweekly</span></div>
+    </div>
+    <div class="main">
+      <div class="kicker">Exercise 5.1 · 20 minutes</div>
+      <h1>Two versions of the same event.</h1>
+      <p class="sub">Write both. We'll look at the gap together on Thursday.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>The story you've been telling yourself</h3>
+          <div class="ex-q" style="font-size:16px;color:var(--dim)">What do you say in your head at 3am?</div>
+          <textarea class="ex-field" placeholder="No one will read this but you and Tad.">I should have seen it coming. I got comfortable. Fifteen years and I'm a line in a spreadsheet — maybe I was never as good as I thought.</textarea>
+        </div>
+        <div class="card">
+          <h3>What the facts actually support</h3>
+          <div class="ex-q" style="font-size:16px;color:var(--dim)">Same event. Only what you could prove.</div>
+          <textarea class="ex-field" placeholder="Just the facts. It's harder than it sounds."></textarea>
+          <div class="hint">Most people find the second box much harder to fill. That gap is the work.</div>
+        </div>
+      </div>
+      <button class="btn">Save for Thursday</button>
+      <button class="btn ghost" style="margin-left:8px">I'm not ready for this one</button>
+      <div class="hint">Skipping is allowed and gets noticed — not judged. Tad will ask once, gently.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. THE THREAD — the differentiator -->
+<div class="screen" id="thread">
+  <div class="app">
+    <div class="side">
+      <div class="brand">Journey</div>
+      <div class="brand-sub">Day 34 of 90</div>
+      <div class="nav-item">Where am I</div>
+      <div class="nav-item">This week</div>
+      <div class="nav-item">Identity work</div>
+      <div class="nav-item on">The thread</div>
+      <div class="nav-item">Check in</div>
+      <div class="nav-item">Support</div>
+      <div class="side-foot"><strong>Tad</strong> — your guide<br><em style="font-style:normal;color:#6a707a">Not a therapist. Been through this.</em><br><span style="display:block;margin-top:8px">Next 1:1: Thu 10:00 · biweekly</span></div>
+    </div>
+    <div class="main">
+      <div class="kicker">Continuity · the whole point</div>
+      <h1>Someone has been keeping track.</h1>
+      <p class="sub">Every conversation, every check-in, every thing you said you'd do. You don't have to re-explain yourself.</p>
+
+      <div class="thread">
+        <div class="entry">
+          <div class="entry-date">Day 34<br>today</div>
+          <div class="entry-body">Story rewrite in progress. <b>Thursday:</b> look at the gap between the two versions.</div>
+        </div>
+        <div class="entry">
+          <div class="entry-date">Day 29</div>
+          <div class="entry-body">
+            <div class="noticed">You went quiet for four days. <b>Tad</b> messaged — written and sent by him, not an automated nudge: <i>"No agenda — just noticed you'd gone quiet. Rough week or busy week?"</i></div>
+            <span style="font-size:13px;color:var(--dimmer)">You replied the same day. It was the Meta rejection.</span>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-date">Day 22</div>
+          <div class="entry-body">Energy audit done. <b>Pattern found:</b> every high-energy moment involved teaching someone. Every drain involved defending decisions upward.</div>
+        </div>
+        <div class="entry">
+          <div class="entry-date">Day 16</div>
+          <div class="entry-body">You said you'd tell your sister what actually happened. <b>You did.</b> First time you'd said it out loud to family.</div>
+        </div>
+        <div class="entry">
+          <div class="entry-date">Day 8</div>
+          <div class="entry-body">Routine holding — up by 7:30 six days running. Severance and benefits sorted.</div>
+        </div>
+        <div class="entry">
+          <div class="entry-date">Day 1</div>
+          <div class="entry-body">First call. <i>"I don't know who I am if I'm not the person who does this."</i></div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:18px">
+        <b>This is the part Reddit can't do.</b> Free communities give real empathy and real advice at 3am — that's not in dispute. What they don't do is remember what you said on day 1, notice when you disappear on day 29, or hand you the right thing on day 34.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. CHECK-IN -->
+<div class="screen" id="checkin">
+  <div class="app">
+    <div class="side">
+      <div class="brand">Journey</div>
+      <div class="brand-sub">Day 34 of 90</div>
+      <div class="nav-item">Where am I</div>
+      <div class="nav-item">This week</div>
+      <div class="nav-item">Identity work</div>
+      <div class="nav-item">The thread</div>
+      <div class="nav-item on">Check in</div>
+      <div class="side-foot"><strong>Tad</strong> — your guide<br><em style="font-style:normal;color:#6a707a">Not a therapist. Been through this.</em><br><span style="display:block;margin-top:8px">Next 1:1: Thu 10:00 · biweekly</span></div>
+    </div>
+    <div class="main">
+      <div class="kicker">Daily · 30 seconds</div>
+      <h1>How was today?</h1>
+      <p class="sub">Thirty seconds. It's not a mood tracker — it's how Tad knows when to reach out.</p>
+
+      <div class="scale">
+        <button>1</button><button>2</button><button class="sel">3</button><button>4</button><button>5</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--dimmer);margin-bottom:24px">
+        <span>underwater</span><span>steady</span><span>good day</span>
+      </div>
+
+      <div class="card">
+        <h3>One line, if you want</h3>
+        <textarea class="ex-field" style="min-height:80px" placeholder="Optional. Nobody's scoring this."></textarea>
+      </div>
+      <button class="btn">Done</button>
+
+      <div class="callout" style="margin-top:22px">
+        <b>What happens with this:</b> nothing automated. No streak badge, no nudge bot. Three low days in a row, or four days of silence, and a human notices — then decides whether to reach out. That's it.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. SUPPORT — self-serve layer + referral -->
+<div class="screen" id="support">
+  <div class="app">
+    <div class="side">
+      <div class="brand">Journey</div>
+      <div class="brand-sub">Day 34 of 90</div>
+      <div class="nav-item">Where am I</div>
+      <div class="nav-item">This week</div>
+      <div class="nav-item">Identity work</div>
+      <div class="nav-item">The thread</div>
+      <div class="nav-item">Check in</div>
+      <div class="nav-item on">Support</div>
+      <div class="side-foot"><strong>Tad</strong> — your guide<br><em style="font-style:normal;color:#6a707a">Not a therapist. Been through this.</em><br><span style="display:block;margin-top:8px">Next 1:1: Thu 10:00 · biweekly</span></div>
+    </div>
+    <div class="main">
+      <div class="kicker">Always here · no gatekeeping</div>
+      <h1>For the hard days.</h1>
+      <p class="sub">Reach for any of this whenever you want. Nothing here is tracked or scored.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Right now, small</h3>
+          <div class="task"><span class="box"></span><span>Walk — 15 minutes, no podcast</span></div>
+          <div class="task"><span class="box"></span><span>Box breathing — 4 minutes, guided</span></div>
+          <div class="task"><span class="box"></span><span>Grounding: name five things you can see</span></div>
+          <div class="task"><span class="box"></span><span>Get outside before 10am tomorrow</span></div>
+          <p style="margin-top:14px;font-size:13px;color:var(--dimmer)">Surfaced because your last three check-ins were 2s. It's a rule, not a diagnosis.</p>
+        </div>
+        <div class="card">
+          <h3>When it's heavier than this</h3>
+          <p>Journey is a structure, not therapy. Tad is a guide who's been through a layoff — not a therapist or counsellor.</p>
+          <p>If what you're carrying needs professional care, that's not the program failing. It's the program working.</p>
+          <button class="btn" style="margin-top:6px">Find a therapist — Vancouver &amp; online</button>
+          <p style="margin-top:12px;font-size:13px;color:var(--dimmer)">Your former employer's EAP may still cover sessions after a layoff. Most people don't know this. We'll help you check.</p>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:18px;background:#2a1f1f">
+        <b>In crisis?</b> If you're thinking about harming yourself, please don't wait for Thursday. <span style="color:#e8b34b">9-8-8 — Suicide Crisis Helpline (call or text, 24/7)</span>. Tad is notified when this page is opened, and will reach out — but a trained human is available right now.
+      </div>
+
+      <div class="callout" style="margin-top:14px">
+        <b>What the guide is:</b> someone who asks the same questions in the same order, notices patterns across weeks, holds you to what you said you'd do, and knows when to point you somewhere else. <b>What the guide isn't:</b> a clinician. Both things are said out loud on day one.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById(t.dataset.s).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  document.querySelectorAll('.scale button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.scale button').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+    });
+  });
+  document.querySelectorAll('.task').forEach(t=>{
+    t.addEventListener('click',()=>t.classList.toggle('done'));
+  });
+</script>
+</body>
+</html>

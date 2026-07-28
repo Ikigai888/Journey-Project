@@ -1,0 +1,72 @@
+/*
+  Journey — Design Tokens
+  Single source of truth for color, type, spacing, and radii.
+  Shared by journey-landing.html and journey-prototype.html so the
+  waitlist page and the product concept stay visually in sync.
+
+  No dark/light "arc" — one flat, warm-paper palette used throughout.
+*/
+:root{
+  /* ---- Color: surfaces ---- */
+  --paper:      #f7f5f0;   /* primary background */
+  --paper-1:    #efece5;   /* secondary section background (alternating bands) */
+  --paper-2:    #e8e5de;   /* deepest neutral — outer frame / recessed areas */
+  --surface:    #ffffff;   /* cards, inputs */
+  --line:       #e4e1d9;   /* borders, dividers */
+  --line-soft:  #f0ede7;   /* hairline dividers inside cards/lists */
+
+  /* ---- Color: ink (chrome & headings only — not body backgrounds) ---- */
+  --ink:        #12151c;   /* strongest — nav/sidebar chrome, high-emphasis fills */
+  --ink-1:      #1a1f29;
+
+  /* ---- Color: text ---- */
+  --text:       #1c2028;   /* primary text on paper/surface */
+  --text-dim:   #5b6578;   /* secondary text */
+  --text-dimmer:#9aa0aa;   /* tertiary / meta text */
+  --text-on-ink:#f2efe9;   /* text on --ink chrome */
+
+  /* ---- Color: accent (wayline gold) ---- */
+  --accent:      #c8912b;
+  --accent-soft: rgba(200,145,43,.14);
+  --accent-deep: #8a6317;  /* readable text on --accent-soft */
+
+  /* ---- Color: status ---- */
+  --ok:    #3f7d52;
+  --error: #b3432e;
+
+  /* ---- Type families ---- */
+  --font-serif: 'Newsreader', Georgia, serif;      /* headlines */
+  --font-mono:  'IBM Plex Mono', monospace;         /* eyebrows, labels, meta */
+  --font-sans:  'Inter', -apple-system, system-ui, sans-serif; /* body, UI */
+
+  /* ---- Type scale ---- */
+  --text-h1:     clamp(2.25rem, 5vw, 3.25rem);
+  --text-h2:     clamp(1.75rem, 4vw, 2.375rem);
+  --text-h3:     1.125rem;
+  --text-lede:   1.1875rem;  /* 19px */
+  --text-body:   1rem;       /* 16px */
+  --text-small:  0.875rem;   /* 14px */
+  --text-micro:  0.78125rem; /* 12.5px */
+  --text-label:  0.8125rem;  /* 13px mono labels */
+
+  /* ---- Spacing scale ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* ---- Radii ---- */
+  --radius-sm:   6px;
+  --radius-md:   9px;
+  --radius-lg:   14px;
+  --radius-full: 999px;
+
+  /* ---- Shadows ---- */
+  --shadow-card: 0 20px 60px rgba(20,24,32,.16);
+  --shadow-focus: 0 6px 24px var(--accent-soft);
+}

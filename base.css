@@ -1,0 +1,106 @@
+/*
+  Journey — Base styles & shared components
+  Requires design-tokens.css to be loaded first.
+*/
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  color:var(--text);
+  background:var(--paper);
+  line-height:1.6;
+  font-size:var(--text-body);
+}
+
+h1,h2{font-family:var(--font-serif);font-weight:400;letter-spacing:-.01em;color:var(--text)}
+h1{font-size:var(--text-h1);line-height:1.12;margin-bottom:var(--space-5)}
+h2{font-size:var(--text-h2);line-height:1.2;margin-bottom:var(--space-5)}
+h3{font-family:var(--font-mono);font-size:var(--text-label);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--space-3)}
+p{margin-bottom:var(--space-4);color:var(--text)}
+a{color:inherit}
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:var(--text-label);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:var(--space-5);
+}
+.lede{font-size:var(--text-lede);color:var(--text-dim)}
+.micro{font-family:var(--font-mono);font-size:var(--text-micro);color:var(--text-dimmer)}
+
+/* ---- Buttons ---- */
+.btn{
+  display:inline-block;
+  font-family:var(--font-sans);
+  font-weight:600;
+  font-size:1rem;
+  background:var(--accent);
+  color:var(--ink);
+  border:none;
+  border-radius:var(--radius-sm);
+  padding:15px 28px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-focus)}
+.btn.ghost{
+  background:transparent;
+  color:var(--text-dim);
+  border:1px solid var(--line);
+}
+.btn.ghost:hover{box-shadow:none;border-color:var(--accent);color:var(--text)}
+.btn-note{display:block;margin-top:var(--space-3);font-family:var(--font-mono);font-size:var(--text-small);color:var(--text-dim)}
+
+/* ---- Cards ---- */
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  padding:var(--space-5);
+}
+
+/* ---- Pills / labels ---- */
+.pill{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:4px 9px;
+  border-radius:var(--radius-full);
+  background:var(--accent-soft);
+  color:var(--accent-deep);
+}
+
+/* ---- Forms ---- */
+label{
+  font-family:var(--font-mono);
+  font-size:var(--text-micro);
+  letter-spacing:.05em;
+  color:var(--text-dim);
+  display:block;
+  margin-bottom:6px;
+}
+input,select,textarea{
+  width:100%;
+  font-family:var(--font-sans);
+  font-size:1rem;
+  padding:14px 16px;
+  border:1.5px solid var(--line);
+  border-radius:var(--radius-sm);
+  background:var(--surface);
+  color:var(--text);
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+.form-status{font-family:var(--font-mono);font-size:var(--text-small);margin-top:var(--space-2);display:none}
+.form-status.ok{display:block;color:var(--ok)}
+.form-status.err{display:block;color:var(--error)}
+
+/* ---- Wayline (signature progress element) ---- */
+.wayline{margin:var(--space-6) 0 var(--space-2);position:relative}
+.wayline-track{height:4px;background:linear-gradient(90deg,var(--line),var(--accent));border-radius:3px;position:relative}
+.wayline-dot{position:absolute;top:-7px;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
+.wayline-label{position:absolute;top:-38px;font-family:var(--font-mono);font-size:.75rem;color:var(--accent);letter-spacing:.06em}

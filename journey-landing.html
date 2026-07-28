@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journey — Rebuild after a layoff</title>
+<meta name="description" content="Journey is a structured program for professionals rebuilding identity and momentum after a layoff. Not just your resume — you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-tokens.css">
+<link rel="stylesheet" href="base.css">
+<style>
+  section{padding:var(--space-9) var(--space-5)}
+  .wrap{max-width:680px;margin:0 auto}
+
+  /* alternating bands for rhythm — no dark/light arc, just two flat tones */
+  .band-a{background:var(--paper)}
+  .band-b{background:var(--paper-1)}
+
+  .hero{padding-top:calc(var(--space-9) + 44px)}
+
+  /* ---- Program / wayline ---- */
+  .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);margin-top:var(--space-6)}
+  .phase p{font-size:var(--text-small);color:var(--text-dim);margin:0}
+  @media(max-width:640px){.phases{grid-template-columns:1fr}}
+
+  /* ---- Founder ---- */
+  .founder-card{display:flex;gap:var(--space-5);align-items:flex-start}
+  .founder-photo{flex:0 0 96px;width:96px;height:96px;border-radius:50%;background:var(--paper-2);object-fit:cover;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;color:var(--text-dimmer);text-align:center}
+  .founder-fine{font-size:var(--text-small);color:var(--text-dim)}
+  @media(max-width:520px){.founder-card{flex-direction:column}}
+
+  /* ---- Pricing + signup ---- */
+  .signup{padding-bottom:var(--space-8)}
+  .price{font-family:var(--font-serif);font-size:2.75rem;margin:var(--space-2) 0 4px}
+  .price small{font-family:var(--font-sans);font-size:1rem;color:var(--text-dim)}
+  form{margin-top:var(--space-6);display:flex;flex-direction:column;gap:var(--space-4);max-width:440px}
+  .field-note{margin-top:10px}
+  .form-divider{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+
+  footer{padding:0 var(--space-5) var(--space-8);text-align:center;background:var(--paper)}
+  footer p{font-family:var(--font-serif);font-style:italic;font-size:1rem;max-width:520px;margin:0 auto;color:var(--text-dim)}
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<section class="hero band-a">
+  <div class="wrap">
+    <div class="eyebrow">For professionals rebuilding after a layoff</div>
+    <h1>You'll find another job.<br>That was never the hard part.</h1>
+    <p class="lede">Losing the role means losing the routine, the title, and the version of yourself that came with them. Journey is a structured path for rebuilding your identity and momentum — not just your resume — for as long as the rebuild takes.</p>
+    <a class="btn" href="#join">Join the waitlist — $49/month at launch</a>
+    <span class="btn-note">Be first in when the first cohort opens.</span>
+  </div>
+</section>
+
+<!-- 2. PROBLEM -->
+<section class="problem band-b">
+  <div class="wrap">
+    <h2>The part no one prepares you for</h2>
+    <p>Everyone hands you resume tips and job boards. No one tells you what to do with the Tuesday morning when there's nowhere to be, or the quiet question of who you are without the role you had yesterday.</p>
+    <p>The research is blunt about it: most people don't struggle because they can't eventually find work — they struggle in the months in between. Six in ten people don't tell anyone how hard it hit. That silence is the problem Journey is built for.</p>
+  </div>
+</section>
+
+<!-- 3. PROGRAM / WAYLINE -->
+<section class="program band-a">
+  <div class="wrap">
+    <h2>A path, not a pep talk</h2>
+    <p class="lede">Journey is a structured path with three phases. You always know where you are and what's next — and you stay as long as it's useful, not for a fixed run.</p>
+    <div class="wayline">
+      <span class="wayline-label" style="left:4%">you are here</span>
+      <div class="wayline-track"><span class="wayline-dot" style="left:4%"></span></div>
+    </div>
+    <div class="phases">
+      <div class="phase">
+        <h3>Reground</h3>
+        <p>Steady the ground under you. Process what happened, rebuild routine, and stop the free-fall before you make big decisions from a bad place.</p>
+      </div>
+      <div class="phase">
+        <h3>Reorient</h3>
+        <p>Figure out who you're becoming, not just what job to apply for. Clarify direction while the search gets real.</p>
+      </div>
+      <div class="phase">
+        <h3>Rebuild</h3>
+        <p>Move with momentum. Structure, accountability, and a plan you're actually running — through to the next chapter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. VS FREE -->
+<section class="free band-b">
+  <div class="wrap">
+    <h2>You can get advice for free. That's not what's missing.</h2>
+    <p>Reddit, Blind, and the layoff communities are genuinely good. Post at 3am and people will show up for you with real empathy and real advice — that matters, and it helps.</p>
+    <p>But nobody there checks on you next Tuesday. No one notices when you go quiet for two weeks, or remembers what you were working through last month, or hands you the right thing at the right time instead of whatever happened to get posted that day.</p>
+    <p>Journey isn't more advice. It's continuity — someone holding the thread of your ninety days when you can't.</p>
+  </div>
+</section>
+
+<!-- 5. FOUNDER — do not cut this section -->
+<section class="founder band-a">
+  <div class="wrap">
+    <div class="eyebrow">Why I'm building this</div>
+    <div class="founder-card">
+      <!-- Drop founder.jpg into this folder and it appears. Falls back to placeholder if missing. -->
+      <img class="founder-photo" src="founder.jpg" alt="Tad Natsuhara"
+           onerror="this.outerHTML='&lt;div class=&quot;founder-photo&quot;&gt;founder.jpg&lt;br&gt;not found&lt;/div&gt;'">
+      <div>
+        <p>I'm Tad Natsuhara, a senior product designer. I've been laid off twice in eighteen months — once in a restructuring last year, and again in June.</p>
+        <p>The first time took five months. I had the network, the resume, and fifteen years of experience, and I still spent the first two of those months not knowing who I was without the job. I got through it. I also did it badly, and almost entirely alone.</p>
+        <p>I'm in it again now. This time I'm building the structure I wish I'd had the first time — in the open, while I'm still living it.</p>
+        <p class="founder-fine">I'm not a therapist or a career coach. I'm a designer who has been through this twice and is building something I need as much as you do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6+7. PRICING + SIGNUP -->
+<section class="signup band-b" id="join">
+  <div class="wrap">
+    <div class="eyebrow">Simple, honest pricing</div>
+    <div class="price">$49<small>/month</small></div>
+    <p>No lock-in, cancel anytime. Less than a single hour with most career coaches — for ongoing structure instead of a one-off conversation. Stay while it's useful; leave when you're through.</p>
+
+    <h2 style="margin-top:var(--space-7)">Be first in.</h2>
+    <form id="waitlist" action="https://formspree.io/f/mrenlwyn" method="POST">
+      <div>
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div>
+        <label for="weeks">How long since your layoff? (optional)</label>
+        <select id="weeks" name="weeks_since_layoff">
+          <option value="">Prefer not to say</option>
+          <option value="0-2">Less than 2 weeks</option>
+          <option value="2-8">2–8 weeks</option>
+          <option value="8-16">2–4 months</option>
+          <option value="16+">More than 4 months</option>
+          <option value="not-laid-off">I haven't been laid off</option>
+        </select>
+      </div>
+      <button class="btn" type="submit">Join the waitlist</button>
+      <div class="form-status" id="status"></div>
+      <div class="micro field-note">We'll only email you about Journey. First cohort is small and hand-run.</div>
+      <div class="micro form-divider">Journey is a structured program, not therapy or medical care. If what you're carrying needs professional support, we'll help you find it.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>Journey starts with layoffs — the first of many transitions we're built to help you move through.</p>
+</footer>
+
+<script>
+  // Progressive enhancement: AJAX submit so the visitor stays on the page.
+  // Works as a normal POST (Formspree redirect) if JS is off.
+  const form = document.getElementById('waitlist');
+  const status = document.getElementById('status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = 'form-status';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        status.textContent = "You're on the list. Talk soon.";
+        status.classList.add('ok');
+      } else {
+        throw new Error();
+      }
+    } catch {
+      status.textContent = "Something went wrong — email me directly and I'll add you.";
+      status.classList.add('err');
+    }
+  });
+</script>
+
+</body>
+</html>
