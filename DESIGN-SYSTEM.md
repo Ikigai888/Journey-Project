@@ -24,7 +24,7 @@ explicit and enforced in one file instead of two.
   values here; nothing else.
 - `base.css` — shared element styles and components (buttons, cards, pills,
   forms, the wayline element) built on top of the tokens.
-- `journey-landing.html` — the waitlist page. Links both CSS files, adds
+- `index.html` — the waitlist page. Links both CSS files, adds
   page-specific layout on top.
 - `journey-prototype.html` — the product concept walkthrough. Links
   `design-tokens.css` and aliases its existing (shorter) variable names to

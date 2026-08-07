@@ -3,7 +3,7 @@
 Static site + design system for Journey's waitlist landing page and product
 concept prototype. See `DESIGN-SYSTEM.md` for the tokens.
 
-- `journey-landing.html` — the live waitlist page (form posts to Formspree).
+- `index.html` — the live waitlist page (form posts to Formspree).
 - `journey-prototype.html` — interview walkthrough artifact, not shipped.
 - `design-tokens.css`, `base.css` — shared design system.
 - `founder.jpg` — photo used in the landing page's founder section.
