@@ -39,11 +39,44 @@
   .field-note{margin-top:10px}
   .form-divider{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
 
+  /* ---- Pre-sale / reserve block ---- */
+  .reserve{margin-top:var(--space-7)}
+  .includes{list-style:none;margin:var(--space-4) 0 0;padding:0;max-width:520px}
+  .includes li{position:relative;padding-left:22px;margin-bottom:10px;color:var(--text-dim);font-size:var(--text-small)}
+  .includes li:before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .promise{margin-top:var(--space-5);max-width:520px}
+  .promise h3{margin-bottom:var(--space-3)}
+  .promise p{font-size:var(--text-small);color:var(--text-dim);margin-bottom:var(--space-3)}
+  .promise p:last-child{margin-bottom:0}
+  .reserve-cta{margin-top:var(--space-5)}
+  .pay-note{display:block;margin-top:var(--space-3);font-family:var(--font-mono);font-size:var(--text-micro);color:var(--text-dimmer)}
+  .pay-note a{color:var(--text-dim);text-decoration:underline}
+
+  /* ---- Secondary (unpaid) waitlist ---- */
+  .alt{margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--line)}
+  .alt h3{color:var(--text-dim)}
+  .alt .lede{font-size:var(--text-body)}
+  .test-bar{
+    display:none;position:fixed;top:0;left:0;right:0;z-index:99;
+    height:44px;align-items:center;justify-content:center;gap:10px;
+    background:var(--error);color:#fff;
+    font-family:var(--font-mono);font-size:var(--text-micro);letter-spacing:.06em;
+    padding:0 var(--space-4);text-align:center;
+  }
+  .test-bar.show{display:flex}
+  .test-tag{display:none;margin-top:var(--space-3);font-family:var(--font-mono);font-size:var(--text-micro);color:var(--error)}
+  .test-tag.show{display:block}
+  .config-warn{display:none;margin-top:var(--space-4);padding:var(--space-4);border:1px solid var(--error);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:var(--text-micro);color:var(--error);background:var(--surface)}
+  .config-warn.show{display:block}
+
   footer{padding:0 var(--space-5) var(--space-8);text-align:center;background:var(--paper)}
   footer p{font-family:var(--font-serif);font-style:italic;font-size:1rem;max-width:520px;margin:0 auto;color:var(--text-dim)}
 </style>
 </head>
 <body>
+
+<!-- Shown only when the pay button still points at a Stripe TEST link. -->
+<div class="test-bar" id="test-bar">STRIPE TEST MODE — no real payments are being collected on this page</div>
 
 <!-- 1. HERO -->
 <section class="hero band-a">
@@ -51,8 +84,8 @@
     <div class="eyebrow">For professionals rebuilding after a layoff</div>
     <h1>You'll find another job.<br>That was never the hard part.</h1>
     <p class="lede">Losing the role means losing the routine, the title, and the version of yourself that came with them. Journey is a structured path for rebuilding your identity and momentum — not just your resume — for as long as the rebuild takes.</p>
-    <a class="btn" href="#join">Join the waitlist — $49/month at launch</a>
-    <span class="btn-note">Be first in when the first cohort opens.</span>
+    <a class="btn" href="#join">Reserve a seat in cohort one — $49</a>
+    <span class="btn-note">Small, hand-run, and refunded in full if it doesn't run.</span>
   </div>
 </section>
 
@@ -119,35 +152,80 @@
   </div>
 </section>
 
-<!-- 6+7. PRICING + SIGNUP -->
+<!-- 6+7. PRICING + PRE-SALE + SIGNUP -->
+<!--
+  PRICE APPEARS IN FOUR PLACES IN THIS FILE (grep for $49), plus two outside it.
+  If you change it, change all six:
+    1. the hero CTA button text (section 1, ~line 74)
+    2. the .price block below
+    3. the reserve-block lede paragraph
+    4. the reserve button text
+    5. terms.html — the "Price and billing" section
+    6. the amount on the Stripe Payment Link itself (Stripe dashboard)
+  See STRIPE-SETUP.md.
+-->
 <section class="signup band-b" id="join">
   <div class="wrap">
     <div class="eyebrow">Simple, honest pricing</div>
     <div class="price">$49<small>/month</small></div>
     <p>No lock-in, cancel anytime. Less than a single hour with most career coaches — for ongoing structure instead of a one-off conversation. Stay while it's useful; leave when you're through.</p>
 
-    <h2 style="margin-top:var(--space-7)">Be first in.</h2>
-    <form id="waitlist" action="https://formspree.io/f/mrenlwyn" method="POST">
-      <div>
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
+    <!-- ---- PRE-SALE ---- -->
+    <div class="reserve">
+      <h2>Reserve a seat in cohort one</h2>
+      <p class="lede">Cohort one opens this fall and is capped at twelve people. Reserving covers your first month at $49. Nothing bills again until you've been through that month and decide to stay.</p>
+
+      <ul class="includes">
+        <li>A seat in the first cohort, held in your name</li>
+        <li>Your first month of the program — the Reground phase, start to finish</li>
+        <li>A 45-minute call with me before the cohort starts, to shape it around where you actually are</li>
+        <li>Founding-member pricing locked for as long as you stay</li>
+      </ul>
+
+      <div class="promise card">
+        <h3>The refund promise</h3>
+        <p><strong>If cohort one doesn't run by October 31, 2026, you get every dollar back.</strong> Automatically, without asking, to the card you paid with. I'd rather refund you than deliver something half-built.</p>
+        <p><strong>If it runs and it isn't for you, tell me within the first two weeks and I'll refund you in full.</strong> No form, no conditions. Reply to any email I send you.</p>
+        <p>This is a pre-sale for a program I am building in the open. I'm not going to pretend it already exists.</p>
       </div>
-      <div>
-        <label for="weeks">How long since your layoff? (optional)</label>
-        <select id="weeks" name="weeks_since_layoff">
-          <option value="">Prefer not to say</option>
-          <option value="0-2">Less than 2 weeks</option>
-          <option value="2-8">2–8 weeks</option>
-          <option value="8-16">2–4 months</option>
-          <option value="16+">More than 4 months</option>
-          <option value="not-laid-off">I haven't been laid off</option>
-        </select>
+
+      <div class="reserve-cta">
+        <!-- Replace href with your live Stripe Payment Link. See STRIPE-SETUP.md. -->
+        <a class="btn" id="reserve-btn" href="https://buy.stripe.com/8x27sL1mpdF6a152x72kw00">Reserve my seat — $49</a>
+        <span class="pay-note">Secured by Stripe. Card details never touch this page. <a href="terms.html">Refund policy and terms</a>.</span>
+        <div class="test-tag" id="test-tag">Test mode. Use card 4242 4242 4242 4242, any future expiry, any CVC.</div>
+        <div class="config-warn" id="config-warn">
+          Payment link not configured yet. Replace the placeholder href on <code>#reserve-btn</code> with your live Stripe Payment Link before deploying. See STRIPE-SETUP.md.
+        </div>
       </div>
-      <button class="btn" type="submit">Join the waitlist</button>
-      <div class="form-status" id="status"></div>
-      <div class="micro field-note">We'll only email you about Journey. First cohort is small and hand-run.</div>
-      <div class="micro form-divider">Journey is a structured program, not therapy or medical care. If what you're carrying needs professional support, we'll help you find it.</div>
-    </form>
+    </div>
+
+    <!-- ---- SECONDARY: unpaid waitlist ---- -->
+    <div class="alt">
+      <h3>Not ready to pay for something that doesn't exist yet</h3>
+      <p class="lede">Fair. Leave your email and I'll tell you when cohort one opens — and nothing else.</p>
+      <form id="waitlist" action="https://formspree.io/f/mrenlwyn" method="POST">
+        <div>
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div>
+          <label for="weeks">How long since your layoff? (optional)</label>
+          <select id="weeks" name="weeks_since_layoff">
+            <option value="">Prefer not to say</option>
+            <option value="0-2">Less than 2 weeks</option>
+            <option value="2-8">2–8 weeks</option>
+            <option value="8-16">2–4 months</option>
+            <option value="16+">More than 4 months</option>
+            <option value="not-laid-off">I haven't been laid off</option>
+          </select>
+        </div>
+        <button class="btn ghost" type="submit">Keep me posted</button>
+        <div class="form-status" id="status"></div>
+        <div class="micro field-note">We'll only email you about Journey. First cohort is small and hand-run.</div>
+        <div class="micro form-divider">Journey is a structured program, not therapy or medical care. If what you're carrying needs professional support, we'll help you find it.</div>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -156,6 +234,35 @@
 </footer>
 
 <script>
+  // Guard on the pay button. Three states:
+  //   placeholder -> disable it, so nobody hits a 404 the moment they decide to pay
+  //   test link   -> let it work, but make TEST MODE impossible to miss, so a test
+  //                  link can never be deployed quietly and score a silent zero
+  //   live link   -> say nothing
+  (function () {
+    const btn = document.getElementById('reserve-btn');
+    if (!btn) return;
+    const href = btn.getAttribute('href') || '';
+
+    if (/REPLACE_WITH_PAYMENT_LINK/.test(href)) {
+      const warn = document.getElementById('config-warn');
+      warn.classList.add('show');
+      btn.style.opacity = '.45';
+      btn.style.cursor = 'not-allowed';
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        warn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      return;
+    }
+
+    if (/buy\.stripe\.com\/test_/.test(href)) {
+      document.getElementById('test-bar').classList.add('show');
+      document.getElementById('test-tag').classList.add('show');
+      console.warn('Journey: Stripe payment link is in TEST mode. Swap for the live link before deploying.');
+    }
+  })();
+
   // Progressive enhancement: AJAX submit so the visitor stays on the page.
   // Works as a normal POST (Formspree redirect) if JS is off.
   const form = document.getElementById('waitlist');

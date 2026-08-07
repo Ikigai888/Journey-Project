@@ -3,63 +3,62 @@
 Static site + design system for Journey's waitlist landing page and product
 concept prototype. See `DESIGN-SYSTEM.md` for the tokens.
 
-- `index.html` — the live waitlist page (form posts to Formspree).
+- `index.html` — the live page. Primary CTA is a paid $49 seat
+  reservation via a Stripe Payment Link; the free Formspree waitlist is kept as
+  a de-emphasized fallback so you still capture the soft signal.
+- `thanks.html` — post-payment landing page. Restates the refund promise and
+  pushes the buyer straight into booking their 45-minute call.
+- `terms.html` — refund policy and terms. Stripe's account review expects this
+  to exist for a pre-sale.
 - `journey-prototype.html` — interview walkthrough artifact, not shipped.
 - `design-tokens.css`, `base.css` — shared design system.
 - `founder.jpg` — photo used in the landing page's founder section.
+- `STRIPE-SETUP.md` — **read this before deploying.** Three placeholders and one
+  date must be replaced or the pay button stays disabled by design.
 
-## Move this out of iCloud first — then push to GitHub
+## Before you deploy
 
-**Do this before `git init`, not after.** This folder currently sits inside
-iCloud Drive, and iCloud Drive on this Mac has Optimize Storage on — as of
-2026-07-26, roughly 99% of the surrounding `Tad-OS` folder is evicted to
-cloud-only (26 GB apparent, 34 MB actually on disk). A `.git/` directory is
-hundreds of small files that git expects to read instantly; eviction and
-sync races are exactly the conditions that corrupt an index. Initializing a
-repo here invites a problem that's annoying to unwind later.
+| Placeholder | File |
+|---|---|
+| `REPLACE_WITH_PAYMENT_LINK` | `index.html` |
+| `REPLACE_WITH_BOOKING_LINK` | `thanks.html` |
+| `REPLACE_WITH_CONTACT_EMAIL` | `terms.html` |
+| `October 31, 2026` (refund deadline — confirm or change) | all three |
 
-Move the folder to a normal local path first:
+A guard script disables the pay button and shows a red warning if the Stripe
+placeholder is still in place, so a half-configured page cannot take money or
+send anyone to a 404.
+
+## Where this lives
+
+Repo: <https://github.com/Ikigai888/Journey-Project>
+
+**Cowork cannot push to it.** The Cowork sandbox has no GitHub credentials, so
+anything Claude builds here has to be moved across by you, one of two ways:
+
+1. **GitHub web upload** (what the July 28 commit used). Go to the repo, Add
+   file → Upload files, drag them in, commit. Uploading a file at a path that
+   already exists replaces it. Fastest for a handful of files.
+2. **Claude Code on your Mac**, which does have git access. Point it at the
+   local clone and tell it what to commit.
+
+## A note on iCloud
+
+If you keep a local clone, put it outside iCloud Drive. As of 2026-07-26 this
+Mac has Optimize Storage on and roughly 99% of the surrounding `Tad-OS` folder
+is evicted to cloud-only. A `.git/` directory is hundreds of small files that
+git expects to read instantly; eviction and sync races are how an index gets
+corrupted.
 
 ```bash
 mkdir -p ~/Developer
-mv ~/Library/Mobile\ Documents/com~apple~CloudDocs/Tad-OS/Project-Journey/journey-code ~/Developer/journey-code
+git clone https://github.com/Ikigai888/Journey-Project.git ~/Developer/journey-code
 cd ~/Developer/journey-code
 ```
 
-Then treat **GitHub**, not iCloud, as the sync and backup mechanism for this
-code. The rest of `Project-Journey/` (the markdown, the strategy docs) stays
-in iCloud — that material is small, text-only, and benefits from sync.
-
-## Push to GitHub (run locally, via Claude Code)
-
-This folder was built in Cowork, which doesn't have GitHub access from its
-sandbox. Claude Code, running on your Mac, does — so finish the connection
-from there. From a terminal in the moved folder (or tell Claude Code to do it):
-
-```bash
-git init
-git add .
-git commit -m "Journey landing page + design system"
-
-# if you have the GitHub CLI (gh) authenticated:
-gh repo create journey-code --private --source=. --remote=origin --push
-
-# otherwise: create an empty repo at github.com/new (no README/license),
-# then:
-git remote add origin https://github.com/<your-username>/journey-code.git
-git branch -M main
-git push -u origin main
-```
-
-After that, this folder is a normal git repo — Claude Code can branch,
-commit, and push from it like any other project, and you can clone it on
-any machine.
-
-## Current status
-
-**Not a git repo yet.** This folder has a `.gitignore` but no `.git/`
-directory — the steps above have not been run. `Project-Journey/CLAUDE.md`
-previously described it as a standalone repo; that line has been corrected.
+Treat **GitHub**, not iCloud, as the sync mechanism for this code. The rest of
+`Project-Journey/` (the markdown, the strategy docs) stays in iCloud — that
+material is small, text-only, and benefits from sync.
 
 ## Suggested `.gitignore`
 
