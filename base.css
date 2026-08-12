@@ -118,7 +118,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent-d
 .form-status.err{display:block;color:var(--error)}
 
 /* ---- Wayline (signature progress element) ---- */
-.wayline{margin:var(--space-6) 0 var(--space-2);position:relative}
-.wayline-track{height:4px;background:linear-gradient(90deg,var(--line),var(--accent));border-radius:3px;position:relative}
-.wayline-dot{position:absolute;top:-7px;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
-.wayline-label{position:absolute;top:-38px;font-family:var(--font-mono);font-size:.75rem;color:var(--accent-deep);letter-spacing:.06em}
+.wayline{margin:var(--space-7) 0 var(--space-2);position:relative}
+.wayline-track{height:3px;background:linear-gradient(90deg,var(--line),var(--accent));border-radius:2px;position:relative}
+.wayline-dot{position:absolute;top:-7px;width:17px;height:17px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
+.wayline-label{position:absolute;top:-40px;font-family:var(--font-mono);font-size:.75rem;color:var(--accent-deep);letter-spacing:.06em}
