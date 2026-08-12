@@ -5,6 +5,24 @@ page and the product concept prototype. Lives in `design-tokens.css` — every
 other file reads color, type, and spacing from there instead of hardcoding
 its own values.
 
+## What changed (Aug 12, 2026)
+
+Colour pass for empathy. An audit found 10 WCAG AA contrast failures, and they
+were concentrated in exactly the copy that carries the most care — the safety
+note about professional support sat at 2.2:1, the least visible text on the
+page. Two root causes, both now fixed:
+
+- Bright `--accent` was being used as small text (every eyebrow, every `h3`,
+  the wayline label) at ~2.6:1. Gold now splits by role — it fills and marks,
+  `--accent-deep` speaks. The palette is unchanged; only the readable step of
+  it is used for type.
+- The text neutrals were cool blue-grays on a warm paper canvas. They are now
+  warm taupes derived from the surface hue, and `--text-dimmer` was darkened
+  enough to actually be read.
+
+Nothing about the identity moved: same gold, same warm paper, same three
+faces. Every text pair on every page now clears AA.
+
 ## What changed (Jul 24, 2026)
 
 The original landing page used a dark-to-light "arc" — hero starts near-black,
@@ -43,9 +61,15 @@ white), `--line` / `--line-soft` (borders).
 solid button fills), not page backgrounds.
 
 **Color — text:** `--text`, `--text-dim`, `--text-dimmer`, `--text-on-ink`.
+Warm neutrals, not cool gray — they sit on warm paper, and a blue-cast gray
+reads clinical against it. All three clear WCAG AA (4.5:1) on both `--paper`
+and `--paper-1`.
 
 **Color — accent:** `--accent` (wayline gold, `#c8912b`), `--accent-soft`,
-`--accent-deep` (readable text on the soft tint).
+`--accent-deep` (`#8a6317`). Split by role: **`--accent` fills and marks**
+(button, wayline track and dot, list bullets); **`--accent-deep` speaks** —
+use it anywhere gold has to be read as text or act as a focus ring. Bright
+gold is only 2.6:1 on paper: right as a fill, illegible as a 13px label.
 
 **Color — status:** `--ok`, `--error`.
 

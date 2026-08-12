@@ -15,16 +15,20 @@ body{
 h1,h2{font-family:var(--font-serif);font-weight:400;letter-spacing:-.01em;color:var(--text)}
 h1{font-size:var(--text-h1);line-height:1.12;margin-bottom:var(--space-5)}
 h2{font-size:var(--text-h2);line-height:1.2;margin-bottom:var(--space-5)}
-h3{font-family:var(--font-mono);font-size:var(--text-label);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--space-3)}
+h3{font-family:var(--font-mono);font-size:var(--text-label);font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:var(--space-3)}
 p{margin-bottom:var(--space-4);color:var(--text)}
 a{color:inherit}
+/* Use the 600 cut already loaded for buttons — 700 isn't fetched, so bold would be synthesized. */
+strong{font-weight:600}
 
 .eyebrow{
   font-family:var(--font-mono);
   font-size:var(--text-label);
+  font-weight:400;
+  line-height:1.6;
   letter-spacing:.12em;
   text-transform:uppercase;
-  color:var(--accent);
+  color:var(--accent-deep);
   margin-bottom:var(--space-5);
 }
 .lede{font-size:var(--text-lede);color:var(--text-dim)}
@@ -94,7 +98,21 @@ input,select,textarea{
   background:var(--surface);
   color:var(--text);
 }
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+/* Native select arrows sit hard against the border and differ per browser, so the
+   16px inset above never applied to them. Draw our own chevron instead and reserve
+   room for it. Stroke tracks --text-dim (#645c50) by hand; data URIs can't read
+   CSS vars, so re-sync this literal if that token ever moves. */
+select{
+  appearance:none;
+  -webkit-appearance:none;
+  padding-right:44px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23645c50' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  background-size:12px 8px;
+}
+/* Focus is a UI component: needs 3:1. Bright gold on white is only 2.79:1. */
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent-deep)}
 .form-status{font-family:var(--font-mono);font-size:var(--text-small);margin-top:var(--space-2);display:none}
 .form-status.ok{display:block;color:var(--ok)}
 .form-status.err{display:block;color:var(--error)}
@@ -103,4 +121,4 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
 .wayline{margin:var(--space-6) 0 var(--space-2);position:relative}
 .wayline-track{height:4px;background:linear-gradient(90deg,var(--line),var(--accent));border-radius:3px;position:relative}
 .wayline-dot{position:absolute;top:-7px;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
-.wayline-label{position:absolute;top:-38px;font-family:var(--font-mono);font-size:.75rem;color:var(--accent);letter-spacing:.06em}
+.wayline-label{position:absolute;top:-38px;font-family:var(--font-mono);font-size:.75rem;color:var(--accent-deep);letter-spacing:.06em}

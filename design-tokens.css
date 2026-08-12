@@ -19,16 +19,25 @@
   --ink:        #12151c;   /* strongest — nav/sidebar chrome, high-emphasis fills */
   --ink-1:      #1a1f29;
 
-  /* ---- Color: text ---- */
-  --text:       #1c2028;   /* primary text on paper/surface */
-  --text-dim:   #5b6578;   /* secondary text */
-  --text-dimmer:#9aa0aa;   /* tertiary / meta text */
+  /* ---- Color: text ----
+     Warm neutrals, not cool gray. These sit on warm paper all day; a blue-cast
+     gray reads clinical against it, which is the wrong temperature for a page
+     about the months after a layoff. Every value below clears WCAG AA (4.5:1)
+     on both --paper and --paper-1 — the quiet copy here is the caring copy,
+     and it has to be readable to do its job. */
+  --text:       #211e1a;   /* primary text on paper/surface — 15.2:1 on --paper */
+  --text-dim:   #645c50;   /* secondary text — 6.1:1 on --paper, 5.6:1 on --paper-1 */
+  --text-dimmer:#6f675b;   /* tertiary / meta text — 5.1:1 on --paper, 4.7:1 on --paper-1 */
   --text-on-ink:#f2efe9;   /* text on --ink chrome */
 
-  /* ---- Color: accent (wayline gold) ---- */
-  --accent:      #c8912b;
+  /* ---- Color: accent (wayline gold) ----
+     Split by role: --accent fills and marks (button, wayline track and dot,
+     list bullets) where it stays vivid; --accent-deep speaks, wherever gold
+     has to be read as text. Bright gold is only 2.6:1 on paper — beautiful as
+     a fill, illegible as a 13px label. */
+  --accent:      #c8912b;  /* fills and graphic marks only */
   --accent-soft: rgba(200,145,43,.14);
-  --accent-deep: #8a6317;  /* readable text on --accent-soft */
+  --accent-deep: #8a6317;  /* gold as text — 5.0:1 on --paper, 4.6:1 on --paper-1 */
 
   /* ---- Color: status ---- */
   --ok:    #3f7d52;
