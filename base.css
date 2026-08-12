@@ -14,8 +14,8 @@ body{
 
 h1,h2{font-family:var(--font-serif);font-weight:400;letter-spacing:-.01em;color:var(--text)}
 h1{font-size:var(--text-h1);line-height:1.12;margin-bottom:var(--space-5)}
-h2{font-size:var(--text-h2);line-height:1.2;margin-bottom:var(--space-5)}
-h3{font-family:var(--font-mono);font-size:var(--text-label);font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:var(--space-3)}
+h2{font-size:var(--text-h2);line-height:1.2;margin-bottom:20px}
+h3{font-family:var(--font-mono);font-size:var(--text-small);font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:10px}
 p{margin-bottom:var(--space-4);color:var(--text)}
 a{color:inherit}
 /* Use the 600 cut already loaded for buttons — 700 isn't fetched, so bold would be synthesized. */
@@ -29,7 +29,7 @@ strong{font-weight:600}
   letter-spacing:.12em;
   text-transform:uppercase;
   color:var(--accent-deep);
-  margin-bottom:var(--space-5);
+  margin-bottom:20px;
 }
 .lede{font-size:var(--text-lede);color:var(--text-dim)}
 .micro{font-family:var(--font-mono);font-size:var(--text-micro);color:var(--text-dimmer)}
@@ -56,7 +56,7 @@ strong{font-weight:600}
   border:1px solid var(--line);
 }
 .btn.ghost:hover{box-shadow:none;border-color:var(--accent);color:var(--text)}
-.btn-note{display:block;margin-top:var(--space-3);font-family:var(--font-mono);font-size:var(--text-small);color:var(--text-dim)}
+.btn-note{display:block;margin-top:var(--space-3);font-family:var(--font-mono);font-size:var(--text-label);color:var(--text-dim)}
 
 /* ---- Cards ---- */
 .card{
