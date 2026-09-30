@@ -22,7 +22,9 @@
     font-family:var(--font-mono);font-size:var(--text-micro);
     display:flex;align-items:center;justify-content:center;
   }
-  .steps h3{margin-bottom:6px}
+  /* h2 for heading order (h1 > h2), styled exactly like the site-wide mono h3 label */
+  .steps h2,.promise h2{font-family:var(--font-mono);font-size:var(--text-small);font-weight:400;line-height:1.6;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:10px}
+  .steps h2{margin-bottom:6px}
   .steps p{font-size:var(--text-small);color:var(--text-dim);margin-bottom:0}
   .promise{margin-top:var(--space-7)}
   .promise p{font-size:var(--text-small);color:var(--text-dim)}
@@ -43,21 +45,21 @@
 
     <ol class="steps">
       <li>
-        <h3>Within 24 hours</h3>
+        <h2>Within 24 hours</h2>
         <p>You'll get an email written by me, with my calendar link for your 45-minute call.</p>
       </li>
       <li>
-        <h3>In your first week</h3>
+        <h2>In your first week</h2>
         <p>We talk. I want to know where you actually are, and that call shapes what your first month looks like.</p>
       </li>
       <li>
-        <h3>You begin</h3>
+        <h2>You begin</h2>
         <p>You start on your own, at your pace, with a daily check-in I read. Nothing waits on anyone else.</p>
       </li>
     </ol>
 
     <div class="promise card">
-      <h3>What you can hold me to</h3>
+      <h2>What you can hold me to</h2>
       <p><strong>If it isn't for you, tell me within the first two weeks and I'll refund you in full.</strong> Reply to any email I send you. That's the whole process.</p>
       <p>You can cancel any time by emailing me. It stops the next charge.</p>
     </div>
