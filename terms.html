@@ -17,6 +17,10 @@
   p,li{font-size:var(--text-small);color:var(--text-dim)}
   ul{margin:0 0 var(--space-4) 20px}
   li{margin-bottom:8px}
+  li::marker{color:var(--accent)}
+  .refunds{margin-top:var(--space-7);padding:var(--space-5);background:var(--accent-wash);border:1px solid var(--line);border-radius:var(--radius-md)}
+  .refunds h2{margin-top:0}
+  .refunds ul{margin-bottom:0}
   .updated{font-family:var(--font-mono);font-size:var(--text-micro);color:var(--text-dimmer)}
   footer{padding:var(--space-6) var(--space-5) var(--space-8);text-align:center}
   footer a{font-family:var(--font-mono);font-size:var(--text-micro);color:var(--text-dimmer)}
@@ -41,12 +45,14 @@
       <li>If the price ever changes, you will be told before your next charge.</li>
     </ul>
 
+    <div class="refunds">
     <h2>Refunds</h2>
     <ul>
       <li><strong>If Journey is not right for you, you are refunded in full</strong> if you say so within fourteen days of your first payment. Reply to any email from Journey. There is no form and there are no conditions.</li>
       <li>Refunds are issued through Stripe to the original payment method and typically appear within five to ten business days depending on your bank.</li>
       <li>Outside that window, refunds are at my discretion, and I will be generous rather than technical about it. Ask.</li>
     </ul>
+    </div>
 
     <h2>Cancelling</h2>
     <p>You can cancel at any time by emailing the address below. Cancelling stops future charges, and your access continues until the end of the month you have already paid for.</p>

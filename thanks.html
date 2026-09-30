@@ -23,10 +23,12 @@
     display:flex;align-items:center;justify-content:center;
   }
   /* h2 for heading order (h1 > h2), styled exactly like the site-wide mono h3 label */
+  .steps li:nth-child(2):before{background:var(--accent-step);color:var(--text)}
+  .steps li:nth-child(3):before{background:var(--accent);color:var(--ink)}
   .steps h2,.promise h2{font-family:var(--font-mono);font-size:var(--text-small);font-weight:400;line-height:1.6;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:10px}
   .steps h2{margin-bottom:6px}
   .steps p{font-size:var(--text-small);color:var(--text-dim);margin-bottom:0}
-  .promise{margin-top:var(--space-7)}
+  .promise{margin-top:var(--space-7);background:var(--accent-wash)}
   .promise p{font-size:var(--text-small);color:var(--text-dim)}
   .promise p:last-child{margin-bottom:0}
   .cta{margin-top:var(--space-7)}

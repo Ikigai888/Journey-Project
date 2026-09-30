@@ -5,6 +5,28 @@ page and the product concept prototype. Lives in `design-tokens.css` — every
 other file reads color, type, and spacing from there instead of hardcoding
 its own values.
 
+## What changed (Sept 30, 2026): Pine & brass
+
+Palette swap, chosen by Tad from a three-way live comparison (Pine & brass,
+Plum dusk & apricot, Harbour & sea-glass). Same structure as before: the dark
+arc (hero -> problem -> program -> differentiation) then paper. What moved:
+
+- The arc is deep pine (`--ink` `#0e1712` -> `--mist-0` `#2f4538`) instead of
+  warm brown-black. The paper is a pale sage-tinted off-white.
+- The accent is brass (`#c9a24d`, text-on-paper step `#7d6318`) instead of the
+  old gold. Same roles: `--accent` fills, marks and speaks on the dark arc;
+  `--accent-deep` speaks on paper.
+- Text neutrals are green-tinted to match the surfaces.
+- New tokens from the colorize pass: `--phase-1/2/3` (sage -> brass ramp under
+  the wayline), `--accent-wash` and `--accent-step` (thanks/terms panels).
+- Every text pair was computed, not eyeballed; the lowest is 4.68:1. The ratios
+  are in the comments in `design-tokens.css`.
+
+Not checked: mobile width, and `journey-prototype.html`, which reads `--ink` and
+`--ink-1` and will shift to pine with this change. The hero is still near-black
+(now green-black), so the Sept 25 finding that near-black reads as authority
+is unaddressed.
+
 ## What changed (Aug 12, 2026, later) — dark arc restored, decision flipped
 
 Reverses the Jul 24 entry below, on Tad's explicit direction. The dark-to-light

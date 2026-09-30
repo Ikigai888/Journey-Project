@@ -5,46 +5,46 @@
   waitlist page and the product concept stay visually in sync.
 
   Hero → problem → program → differentiation run the dark arc; founder,
-  pricing, and footer stay on warm paper. See DESIGN-SYSTEM.md.
+  pricing, and footer stay on paper. Palette: Pine & brass. See DESIGN-SYSTEM.md.
 */
 :root{
-  /* ---- Color: surfaces ---- */
-  --paper:      #f7f5f0;   /* primary background */
-  --paper-1:    #efece5;   /* secondary section background (alternating bands) */
-  --paper-2:    #e8e5de;   /* deepest neutral — outer frame / recessed areas */
+  /* ---- Color: surfaces (Pine & brass, Sept 30 2026) ---- */
+  --paper:      #f5f5ef;   /* primary background: pale sage-tinted paper */
+  --paper-1:    #ecede4;   /* secondary section background (alternating bands) */
+  --paper-2:    #e4e6db;   /* deepest neutral: outer frame / recessed areas */
   --surface:    #ffffff;   /* cards, inputs */
-  --line:       #e4e1d9;   /* borders, dividers */
-  --line-soft:  #f0ede7;   /* hairline dividers inside cards/lists */
+  --line:       #dfe1d5;   /* borders, dividers */
+  --line-soft:  #eff0e8;   /* hairline dividers inside cards/lists */
 
-  /* ---- Color: ink (dark-arc backgrounds: hero → problem → program → free; also chrome/button text) ---- */
-  --ink:        #120e0b;   /* hero — darkest */
-  --ink-1:      #1d1712;   /* problem */
-  --ink-2:      #2a211a;   /* program */
-  --mist-0:     #413127;   /* differentiation — transitional, closest to paper */
+  /* ---- Color: the dark arc, hero -> problem -> program -> free (deep pine, darkest to lightest) ---- */
+  --ink:        #0e1712;   /* hero: darkest; also button text */
+  --ink-1:      #15211a;   /* problem */
+  --ink-2:      #1e2e25;   /* program */
+  --mist-0:     #2f4538;   /* differentiation: transitional, closest to paper */
 
   /* ---- Color: text ----
-     Warm neutrals, not cool gray. These sit on warm paper all day; a blue-cast
-     gray reads clinical against it, which is the wrong temperature for a page
-     about the months after a layoff. Every value below clears WCAG AA (4.5:1)
-     on both --paper and --paper-1 — the quiet copy here is the caring copy,
-     and it has to be readable to do its job. */
-  --text:       #211e1a;   /* primary text on paper/surface — 15.2:1 on --paper */
-  --text-dim:   #645c50;   /* secondary text — 6.1:1 on --paper, 5.6:1 on --paper-1 */
-  --text-dimmer:#6f675b;   /* tertiary / meta text — 5.1:1 on --paper, 4.7:1 on --paper-1 */
-  --text-on-ink:#f0e6dc;   /* primary text on the dark arc — 16:1 on --ink */
-  --text-dim-on-ink:#b0a091;    /* secondary text on the dark arc — 7.4:1 on --ink, 4.8:1 on --mist-0 */
-  --text-dimmer-on-ink:#dccdbe; /* --mist-0 body copy specifically — wider margin than --text-dim-on-ink there */
+     Green-tinted neutrals derived from the pine and sage surfaces, not cool gray.
+     Every pair clears WCAG AA (4.5:1) on the surface it is used on. */
+  --text:       #1c211d;   /* primary on paper: 14.9:1 */
+  --text-dim:   #565f58;   /* secondary: 6.0:1 on --paper, 5.6:1 on --paper-1 */
+  --text-dimmer:#626b63;   /* tertiary / meta: 5.0:1 on --paper, 4.7:1 on --paper-1 */
+  --text-on-ink:#e9efe6;   /* primary on the dark arc: 15.6:1 on --ink */
+  --text-dim-on-ink:#a9b8ac;    /* secondary on the dark arc: 8.8:1 on --ink, 6.9:1 on --ink-2 */
+  --text-dimmer-on-ink:#d3ddd2; /* --mist-0 body copy: 7.4:1 on --mist-0 */
 
-  /* ---- Color: accent (wayline gold) ----
-     Split by role: --accent fills and marks (button, wayline track and dot,
-     list bullets) where it stays vivid; --accent-deep speaks, wherever gold
-     has to be read as text ON THE LIGHT PAPER SECTIONS. Bright gold is only
-     2.6:1 on paper — beautiful as a fill, illegible as a 13px label. On the
-     dark arc it's the reverse: --accent alone is ~6.9:1 on --ink and reads
-     fine as text there — use --accent-deep only on paper. */
-  --accent:      #c8912b;  /* fills and graphic marks only */
-  --accent-soft: rgba(200,145,43,.14);
-  --accent-deep: #8a6317;  /* gold as text — 5.0:1 on --paper, 4.6:1 on --paper-1 */
+  /* ---- Color: accent (brass) ----
+     Split by role: --accent fills and marks (button, wayline, bullets) and also
+     speaks on the dark arc (7.6:1 on --ink); --accent-deep speaks on the
+     light paper sections (5.2:1 on --paper, 5.0:1 on --accent-wash). */
+  --accent:      #c9a24d;  /* fills, graphic marks, text on the dark arc */
+  --accent-soft: rgba(201,162,77,.14);
+  --accent-wash: #f3f0dd;  /* soft brass panel on paper: refund promise, Refunds section */
+  --accent-step: #e7dcb2;  /* mid step on paper (thanks.html step 2) */
+  /* Phase ramp on the dark arc: quiet sage -> full brass, same direction as the wayline */
+  --phase-1: #a9b8ac;
+  --phase-2: #b9ae7c;
+  --phase-3: #c9a24d;
+  --accent-deep: #7d6318;  /* brass as text on paper */
 
   /* ---- Color: status ---- */
   --ok:    #3f7d52;
