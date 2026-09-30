@@ -51,7 +51,8 @@
   --error: #b3432e;
 
   /* ---- Type families ---- */
-  --font-serif: 'Newsreader', Georgia, serif;      /* headlines */
+  --font-heading: 'Hanken Grotesk', Inter, system-ui, sans-serif; /* h1/h2, price */
+  --font-serif: 'Newsreader', Georgia, serif;      /* reflective lines only (footer); prototype alias */
   --font-mono:  'IBM Plex Mono', monospace;         /* eyebrows, labels, meta */
   --font-sans:  'Inter', -apple-system, system-ui, sans-serif; /* body, UI */
 
